@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MyGalleriesController extends Controller
 {

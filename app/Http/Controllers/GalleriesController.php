@@ -7,8 +7,7 @@ use App\Http\Requests\UpdateGalleryRequest;
 use App\Http\Resources\GalleryResource;
 use App\Models\Gallery;
 use App\Models\Image;
-
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GalleriesController extends Controller
 {
@@ -44,6 +43,9 @@ class GalleriesController extends Controller
      */
     public function store(StoreGalleryRequest $request)
     {
+
+        $user = JWTAuth::parseToken()->authenticate();
+
         $data = $request->validated();
 
         $gallery = Gallery::create([

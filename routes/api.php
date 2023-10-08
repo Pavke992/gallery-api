@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorsGalleriesController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\GalleriesController;
+use App\Http\Controllers\MyGalleriesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,13 +31,7 @@ Route::middleware('auth::sanctum')->prefix('auth')->group(function () {
 });
 
 
-
-Route::get('/all-galleries/{page}/{term}', [GalleriesController::class, 'index']);
-Route::post('/galleries', [GalleriesController::class, 'store']);
-Route::get('/galleries/{id}', [GalleriesController::class, 'show']);
-Route::put('/galleries/{id}', [GalleriesController::class, 'update']);
-Route::delete('/galleries/{id}', [GalleriesController::class, 'destroy']);
-Route::get('/my-galleries/{page}/{term?}', [MyGalleriesController::class, 'index']);
-Route::get('/authors-galleries/{id}/{page}/{term?}', [AuthorsGalleriesController::class, 'index']);
-Route::post('/galleries/{id}/comments', [CommentsController::class, 'store']);
-Route::delete('/comments/{id}', [CommentsController::class, 'destroy']);
+Route::apiResource('/galleries', GalleriesController::class);
+Route::get('/my-galleries/{page?}/{term?}', [MyGalleriesController::class, 'index']);
+Route::get('authors-galleries/{id}/{page?}/{term?}', [AuthorsGalleriesController::class, 'index']);
+Route::apiResource('galleries.comments', CommentsController::class)->only(['store', 'destroy']);
