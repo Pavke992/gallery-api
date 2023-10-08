@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('gallery_id');
 
             $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
