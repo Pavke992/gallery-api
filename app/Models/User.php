@@ -31,15 +31,15 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function getJWTidentifier()
-    {
-        return $this->getKey();
-    }
+    // public function getJWTidentifier()
+    // {
+    //     return $this->getKey();
+    // }
 
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+    // public function getJWTCustomClaims()
+    // {
+    //     return [];
+    // }
 
     /**
      * The attributes that should be hidden for serialization.
